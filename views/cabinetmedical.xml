@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+        <record model="ir.actions.act_window" id="etablissement_list_action">
+            <field name="name">Etablissements</field>
+            <field name="res_model">cabinetmedical.etablissement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first etablissement
+                </p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_cabinetmedical_menu" name="Cabinet Medical"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="cabinetmedical_menu" name="Cabinet Medical"
+                  parent="main_cabinetmedical_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent cabinetmedical_menu and *after* its
+             action course_list_action -->
+        <menuitem id="etablissements_menu" name="Etablissements" parent="cabinetmedical_menu"
+                  action="etablissement_list_action"/>
+        <!-- Full id location:
+             action="cabinetmedical.course_list_action"
+             It is not required when it is the same module -->
+
+
+        <!-- rendezvous form view -->
+        <record model="ir.ui.view" id="rendezvous_form_view">
+            <field name="name">rendezvous.form</field>
+            <field name="model">cabinetmedical.rendezvous</field>
+            <field name="arch" type="xml">
+                <form string="Rendezvous Form">
+                    <sheet>
+                        <group string="General">
+                            <field name="etablissement_id"/>
+                            <field name="medecin_id"/>
+                            <field name="patient_id"/>
+
+                        </group>
+                        <group string="Planification">
+                            <field name="start_date"/>
+                            <field name="duration"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- rendezvous tree/list view -->
+        <record model="ir.ui.view" id="rendezvous_tree_view">
+            <field name="name">rendezvous.tree</field>
+            <field name="model">cabinetmedical.rendezvous</field>
+            <field name="arch" type="xml">
+                <tree string="Rendez-Vous Tree">
+                    <field name="medecin_id"/>
+                    <field name="patient_id"/>
+                    <field name="etablissement_id"/>
+                    <field name="start_date"/>
+                    <field name="duration"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- calendar view -->
+        <record model="ir.ui.view" id="rendezvous_calendar_view">
+            <field name="name">rendezvous.calendar</field>
+            <field name="model">cabinetmedical.rendezvous</field>
+            <field name="arch" type="xml">
+                <calendar string="Rendez-vous Calendar" date_start="start_date"
+                          date_stop="end_date"
+                          color="medecin_id">
+                    <field name="etablissement_id"/>
+                    <field name="patient_id"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="rendezvous_list_action">
+            <field name="name">Rendez-vous</field>
+            <field name="res_model">cabinetmedical.rendezvous</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+        </record>
+
+        <menuitem id="rendezvous_menu" name="Rendezvous"
+                  parent="cabinetmedical_menu"
+                  action="rendezvous_list_action"/>
+    </data>
+</odoo>

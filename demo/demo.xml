@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record model="cabinetmedical.etablissement" id="etablissement0">
+            <field name="name">Hopital Brughman</field>
+            <field name="description">C'est l'hopital qui se trouve à Brughman
+                voila c'est tout
+            </field>
+        </record>
+        <record model="cabinetmedical.etablissement" id="etablissement1">
+            <field name="name">Centre Dentaire Nivelles</field>
+            <!-- no description for this one -->
+        </record>
+        <record model="cabinetmedical.etablissement" id="etablissement2">
+            <field name="name">Hopital Saint-Etienne 2</field>
+            <field name="description">hopital dans le centre de bruxelles </field>
+        </record>
+
+    </data>
+</odoo>

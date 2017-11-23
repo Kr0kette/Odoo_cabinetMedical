@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+    <data>
+        <!-- Add medecin field to existing view -->
+        <record model="ir.ui.view" id="partner_medecin_form_view">
+            <field name="name">partner.medecin</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Rendezvous">
+                        <group>
+                            <field name="medecin"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
