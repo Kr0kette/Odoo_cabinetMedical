@@ -45,7 +45,6 @@
                             <field name="etablissement_id"/>
                             <field name="medecin_id"/>
                             <field name="patient_id"/>
-
                         </group>
                         <group string="Planification">
                             <field name="start_date"/>

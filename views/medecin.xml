@@ -7,6 +7,36 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
+                <field name="city" position="attributes">
+                    <attribute name="invisible">{'invisible': [('city', '=', True)]}</attribute>
+                </field>
+                <field name="state_id" position="attributes">
+                    <attribute name="invisible">{'invisible': [('state_id', '=', True)]}</attribute>
+                </field>
+                <field name="zip" position="attributes">
+                    <attribute name="invisible">{'invisible': [('zip', '=', True)]}</attribute>
+                </field>
+                 <field name="category_id" position="attributes">
+                    <attribute name="invisible">{'invisible': [('category_id', '=', True)]}</attribute>
+                </field>
+                <field name='street2' position="attributes">
+                <attribute name="invisible">{'invisible': [('street2', '=', True)]}</attribute>
+                </field>
+                <field name="website" position="attributes">
+                    <attribute name="invisible">{'invisible': [('website', '=', True)]}</attribute>
+                </field>
+                <field name="function" position="attributes">
+                    <attribute name="invisible">{'invisible': [('function', '=', True)]}</attribute>
+                </field>
+                 <xpath expr="//notebook/page[1]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[2]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//notebook/page[3]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
                 <notebook position="inside">
                     <page string="Rendezvous">
                         <group>
@@ -16,7 +46,5 @@
                 </notebook>
             </field>
         </record>
-
-
     </data>
 </odoo>
