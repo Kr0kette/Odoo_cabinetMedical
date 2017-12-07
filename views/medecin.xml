@@ -7,6 +7,10 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
+                <field name="street" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
                 <field name="city" position="attributes">
                     <attribute name="invisible">{'invisible': [('city', '=', True)]}</attribute>
                 </field>

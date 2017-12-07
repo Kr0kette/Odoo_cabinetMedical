@@ -16,11 +16,11 @@ class Etablissement(models.Model):
 class Rendezvous(models.Model):
     _name = 'cabinetmedical.rendezvous'
 
-    start_date = fields.Date()
+    start_date = fields.Datetime()
 
-    duration = fields.Float(digits=(6, 2), help="Duration in days")
+    duration = fields.Float(help="Duration in hours", string="Duration in hours : minutes")
 
-    end_date = fields.Date(string="End Date", store=True,
+    end_date = fields.Datetime(string="End Date", store=True,
                            compute='_get_end_date', inverse='_set_end_date')
 
     etablissement_id = fields.Many2one('cabinetmedical.etablissement',
@@ -44,7 +44,7 @@ class Rendezvous(models.Model):
             # Add duration to start_date, but: Monday + 5 days = Saturday, so
             # subtract one second to get on Friday instead
             start = fields.Datetime.from_string(r.start_date)
-            duration = timedelta(days=r.duration, seconds=-1)
+            duration = timedelta(hours=r.duration, seconds=-1)
             r.end_date = start + duration
 
     def _set_end_date(self):
