@@ -2,45 +2,12 @@
  <odoo>
     <data>
         <!-- Add medecin field to existing view -->
-        <record model="ir.ui.view" id="partner_medecin_form_view">
-            <field name="name">partner.medecin</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
-            <field name="arch" type="xml">
-                <field name="street" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </field>
-
-                <field name="city" position="attributes">
-                    <attribute name="invisible">{'invisible': [('city', '=', True)]}</attribute>
-                </field>
-                <field name="state_id" position="attributes">
-                    <attribute name="invisible">{'invisible': [('state_id', '=', True)]}</attribute>
-                </field>
-                <field name="zip" position="attributes">
-                    <attribute name="invisible">{'invisible': [('zip', '=', True)]}</attribute>
-                </field>
-                 <field name="category_id" position="attributes">
-                    <attribute name="invisible">{'invisible': [('category_id', '=', True)]}</attribute>
-                </field>
-                <field name='street2' position="attributes">
-                <attribute name="invisible">{'invisible': [('street2', '=', True)]}</attribute>
-                </field>
-                <field name="website" position="attributes">
-                    <attribute name="invisible">{'invisible': [('website', '=', True)]}</attribute>
-                </field>
-                <field name="function" position="attributes">
-                    <attribute name="invisible">{'invisible': [('function', '=', True)]}</attribute>
-                </field>
-                 <xpath expr="//notebook/page[1]" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-                <xpath expr="//notebook/page[2]" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-                <xpath expr="//notebook/page[3]" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
+            <record id="view_users_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
                 <notebook position="inside">
                     <page string="Rendezvous">
                         <group>
