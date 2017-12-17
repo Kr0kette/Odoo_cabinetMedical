@@ -8,9 +8,13 @@ class Etablissement(models.Model):
     _name = 'cabinetmedical.etablissement'
 
     name = fields.Char(string="Nom de l'établissement", required=True)
-    #     value = fields.Integer()
-    #     value2 = fields.Float(compute="_value_pc", store=True)
-    description = fields.Text()
+
+
+class Specialite(models.Model):
+    _name = 'cabinetmedical.specialite'
+
+    name = fields.Char(string="Nom de la spécialité", required=True)
+
 
 
 class Rendezvous(models.Model):
