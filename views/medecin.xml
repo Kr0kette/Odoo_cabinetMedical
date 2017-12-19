@@ -10,6 +10,7 @@
                     <notebook>
                         <page string="Medecin">
                             <group>
+                                <field name="is_medecin"/>
                                 <field name="specialite_id"/>
                                 <field name="etablissement_id"/>
                             </group>

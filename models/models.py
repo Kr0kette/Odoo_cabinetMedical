@@ -29,7 +29,8 @@ class Rendezvous(models.Model):
 
     etablissement_id = fields.Many2one('cabinetmedical.etablissement',
                                        ondelete='cascade', string="Etablissement")
-    medecin_id = fields.Many2one('res.users', ondelete='cascade', string="Médecin")
+
+    medecin_id = fields.Many2one('res.users', ondelete='cascade', string="Médecin", domain="[('is_medecin','=',True)]")
     patient_id = fields.Many2one('res.partner', ondelete='cascade', string="Patient")
 
 
