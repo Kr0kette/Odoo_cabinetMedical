@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+
+        <!-- filter for tree view -->
+        <record id="base_view_res_users_filter" model="ir.ui.view">
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_search"/>
+            <field name="arch" type="xml">
+                <filter name="Inactive" position="after">
+                    <filter string="Medecin" name="medecin" domain="[('is_medecin', '=', True)]"/>
+                </filter>
+            </field>
+        </record>
+
+
+
         <!-- window action -->
         <!--
             The following tag is an action definition for a "window action",
@@ -32,6 +46,8 @@
             <!-- res.users est modifié dans la classe médecin mais  comme comme c'est de l'heritage ca reste res.users -->
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_medecin':1}</field>
+
         </record>
 
         <record model="ir.actions.act_window" id="specialite_list_action">
