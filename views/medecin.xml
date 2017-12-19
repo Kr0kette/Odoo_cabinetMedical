@@ -11,8 +11,8 @@
                         <page string="Medecin">
                             <group>
                                 <field name="is_medecin"/>
-                                <field name="specialite_id"/>
-                                <field name="etablissement_id"/>
+                                <field name="specialite_id" attrs="{'invisible':[('is_medecin', '=', False)]}"/>
+                                <field name="etablissement_id" attrs="{'invisible':[('is_medecin', '=', False)]}"/>
                             </group>
                         </page>
                     </notebook>
