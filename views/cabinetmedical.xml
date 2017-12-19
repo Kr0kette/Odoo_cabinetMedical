@@ -104,6 +104,23 @@
             </field>
         </record>
 
+
+        <!-- Medecins tree/list view -->
+        <record model="ir.ui.view" id="medecins_tree_view">
+            <field name="name">medecins.tree</field>
+            <field name="model">res.users</field>
+            <!-- res.users est modifié dans la classe médecin mais  comme comme c'est de l'heritage ca reste res.users -->
+            <field name="arch" type="xml">
+                <tree string="Medecins Tree">
+                    <field name="name" string="Nom"/>
+                    <field name="phone" string="Téléphone"/>
+                    <field name="login" string="e-mail"/>
+                    <field name="specialite_id"/> <!-- pas besoin de donner un string ici, je l'ai deja override dans le modele -->
+
+                </tree>
+            </field>
+        </record>
+
         <!-- calendar view -->
         <record model="ir.ui.view" id="rendezvous_calendar_view">
             <field name="name">rendezvous.calendar</field>
