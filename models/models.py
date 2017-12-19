@@ -20,6 +20,21 @@ class Specialite(models.Model):
 class Rendezvous(models.Model):
     _name = 'cabinetmedical.rendezvous'
 
+    @api.depends('start_date','end_date', 'duration')
+    @api.constrains('start_date', 'end_date')
+    def _check_date(self, cr, uid):
+        for item in self.browse(cr, uid):
+            item_ids = self.search(cr, uid, [('start_date', '<=', item.end_date), ('end_date', '>=', item.start_date),
+                                             ('site_id', '=', item.site_id.id), ('id', '<>', item.id)])
+            if item_ids:
+                return False
+        return True
+
+    _constraints = [
+        (_check_date, 'Il y a déjà un rendez-vous à cette date/heure-ci  !', ['start_date', 'end_date']),
+    ]
+
+
     start_date = fields.Datetime(string="Début")
 
     duration = fields.Float(help="Duration in hours", string="Duration in hours : minutes")
@@ -57,3 +72,4 @@ class Rendezvous(models.Model):
             start_date = fields.Datetime.from_string(r.start_date)
             end_date = fields.Datetime.from_string(r.end_date)
             r.duration = (end_date - start_date).days + 1
+
