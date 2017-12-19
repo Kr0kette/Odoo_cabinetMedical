@@ -20,22 +20,17 @@ class Specialite(models.Model):
 class Rendezvous(models.Model):
     _name = 'cabinetmedical.rendezvous'
 
-    start_date = fields.Datetime()
+    start_date = fields.Datetime(string="Début")
 
     duration = fields.Float(help="Duration in hours", string="Duration in hours : minutes")
 
-    end_date = fields.Datetime(string="End Date", store=True,
+    end_date = fields.Datetime(string="Fin", store=True,
                            compute='_get_end_date', inverse='_set_end_date')
 
     etablissement_id = fields.Many2one('cabinetmedical.etablissement',
                                        ondelete='cascade', string="Etablissement")
-    medecin_id = fields.Many2one('res.users', ondelete='cascade', string="Medecin")
+    medecin_id = fields.Many2one('res.users', ondelete='cascade', string="Médecin")
     patient_id = fields.Many2one('res.partner', ondelete='cascade', string="Patient")
-
-    #
-    #     @api.depends('value')
-    #     def _value_pc(self):
-    #         self.value2 = float(self.value) / 100
 
 
     @api.depends('start_date', 'duration')

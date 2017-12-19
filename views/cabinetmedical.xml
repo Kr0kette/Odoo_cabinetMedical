@@ -5,6 +5,7 @@
         <!--
             The following tag is an action definition for a "window action",
             that is an action opening a view or a set of views
+            This is used (referenced) in <menuitem>
         -->
         <record model="ir.actions.act_window" id="etablissement_list_action">
             <field name="name">Etablissements</field>
@@ -18,6 +19,29 @@
             </field>
         </record>
 
+        <record model="ir.actions.act_window" id="rendezvous_list_action">
+            <field name="name">Agenda / Rendez-vous</field>
+            <field name="res_model">cabinetmedical.rendezvous</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="medecin_list_action">
+            <field name="name">Médecins</field>
+            <field name="res_model">res.users</field>
+            <!-- res.users est modifié dans la classe médecin mais  comme comme c'est de l'heritage ca reste res.users -->
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="specialite_list_action">
+            <field name="name">Spécialité</field>
+            <field name="res_model">cabinetmedical.specialite</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
         <!-- top level menu: no parent -->
         <menuitem id="main_cabinetmedical_menu" name="Cabinet Medical"/>
         <!-- A first level in the left side menu is needed
@@ -27,11 +51,21 @@
         <!-- the following menuitem should appear *after*
              its parent cabinetmedical_menu and *after* its
              action course_list_action -->
+        <menuitem id="rendezvous_menu" name="Agenda / Rendez-vous"
+                  parent="cabinetmedical_menu"
+                  action="rendezvous_list_action"/>
+
         <menuitem id="etablissements_menu" name="Etablissements" parent="cabinetmedical_menu"
                   action="etablissement_list_action"/>
         <!-- Full id location:
              action="cabinetmedical.course_list_action"
              It is not required when it is the same module -->
+
+        <menuitem id="medecins_menu" name="Médecins" parent="cabinetmedical_menu"
+                  action="medecin_list_action"/>
+
+        <menuitem id="specialites_menu" name="Spécialités" parent="cabinetmedical_menu"
+                  action="specialite_list_action"/>
 
 
         <!-- rendezvous form view -->
@@ -84,15 +118,6 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="rendezvous_list_action">
-            <field name="name">Rendez-vous</field>
-            <field name="res_model">cabinetmedical.rendezvous</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form,calendar</field>
-        </record>
 
-        <menuitem id="rendezvous_menu" name="Rendezvous"
-                  parent="cabinetmedical_menu"
-                  action="rendezvous_list_action"/>
     </data>
 </odoo>
